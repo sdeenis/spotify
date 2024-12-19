@@ -34,8 +34,11 @@ $(document).ready(function () {
 
     let redirect_uri = "https%3A%2F%2Fsdeenis.github.io%2Fspotify%2F";
 
-    const redirect = "https://accounts.spotify.com/authorize?client_id=" + client_id + "&response_type=token&redirect_uri=" + redirect_uri;
+    const redirect = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&redirect_uri=${redirect_uri}`;
 
+    if (accessToken == null || accessToken == "" || accessToken == undefined) {
+        window.location.replace(redirect);
+    }
 
     $('#form').on('submit', function (e) {
         e.preventDefault();
@@ -43,6 +46,7 @@ $(document).ready(function () {
         let searchQuery = encodeURI(search);
         $.ajax({
             url: 'https://api.spotify.com/v1/search?q=' + searchQuery + '&type=track',
+            type: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + accesToken
             },

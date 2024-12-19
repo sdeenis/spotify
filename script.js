@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     let client_id = "affbae1e92c946faa5859434a9805712";
 
-    let redirect_uri = "https%3A%2F%2Fsdeenis.github.io%2Fspotify%2F";
+    let redirect_uri = encodeURIComponent("https://sdeenis.github.io/spotify/");
 
     const redirect = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&redirect_uri=${redirect_uri}`;
 

@@ -53,8 +53,9 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 let track = response.tracks.items[0];
+                console.log(track);
                 $('#resultado').html(`
-                    <h2>${track.name}</h2>
+                    <h2>Cancionzaca: ${track.name}</h2>
                     <img src="${track.album.images[0].url}" alt="${track.name}">
                     <p>Artista: ${track.artists[0].name}</p>
                     <p>Álbum: ${track.album.name}</p>

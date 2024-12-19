@@ -17,12 +17,29 @@ let redirect_uri = "https%3A%2F%2Fsdeenis.github.io%2Fspotify%2F";
 const redirect = "https://accounts.spotify.com/authorize?client_id=" + client_id + "&response_type=token&redirect_uri=" + redirect_uri;
 
 
-$(document).ready(function() {
+$(document).ready(function () {
+
+    const getUrlParameter = (sParam) => {
+        let sPageURL = window.location.search.substring(1),////substring will take everything after the https link and split the #/&
+            sURLVariables = sPageURL != undefined && sPageURL.length > 0 ? sPageURL.split('#') : [],
+            sParameterName,
+            i;
+        let split_str = window.location.href.length > 0 ? window.location.href.split('#') : [];
+        sURLVariables = split_str != undefined && split_str.length > 1 && split_str[1].length > 0 ? split_str[1].split('&') : [];
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
+
     $('#form').on('submit', function (e) {
         e.preventDefault();
         let search = $('#campo').val();
+        let searchQuery = encodeURI(search);
         $.ajax({
-            url: 'https://api.spotify.com/v1/search?q=' + search + '&type=track',
+            url: 'https://api.spotify.com/v1/search?q=' + searchQuery + '&type=track',
             headers: {
                 'Authorization': 'Bearer ' + accesToken
             },

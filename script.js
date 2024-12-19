@@ -28,7 +28,7 @@ $(document).ready(function () {
     };
 
 
-    const accesToken = getUrlParameter('access_token');
+    const accessToken = getUrlParameter('access_token');
 
     let client_id = "affbae1e92c946faa5859434a9805712";
 
@@ -48,7 +48,7 @@ $(document).ready(function () {
             url: 'https://api.spotify.com/v1/search?q=' + searchQuery + '&type=track',
             type: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + accesToken
+                'Authorization': 'Bearer ' + accessToken
             },
             success: function (response) {
                 console.log(response);

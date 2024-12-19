@@ -28,7 +28,7 @@ $(document).ready(function () {
     };
 
 
-    const accesToken = getUrlParameter('access_token');
+    const accesToken = "8d0840fbe1ee4de7826d2fca3267ad7f";
 
     let client_id = "affbae1e92c946faa5859434a9805712";
 

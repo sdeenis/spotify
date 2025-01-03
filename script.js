@@ -57,8 +57,8 @@ $(document).ready(function () {
                 $('#resultado').html(`
                     <h2>Cancion: ${track.name}</h2>
                     <img src="${track.album.images[0].url}" alt="${track.name}">
-                    <p>Artista: ${track.artists[0].name}</p>
-                    <p>Álbum: ${track.album.name}</p>
+                    <p><b>Artista:</b> ${track.artists[0].name}</p>
+                    <p><b>Álbum:</b> ${track.album.name}</p>
                     
                 `);
                 if (track.preview_url) {
@@ -68,7 +68,7 @@ $(document).ready(function () {
                         </audio>
                     `);
                 } else {
-                    $('#resultado').append('<p>Vista previa no disponible para esta canción.</p>');
+                    $('#resultado').append('<p><i>Vista previa no disponible para esta canción.</i></p>');
                 }
 
             }

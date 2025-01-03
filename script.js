@@ -59,10 +59,18 @@ $(document).ready(function () {
                     <img src="${track.album.images[0].url}" alt="${track.name}">
                     <p>Artista: ${track.artists[0].name}</p>
                     <p>Álbum: ${track.album.name}</p>
-                    <audio controls>
-                        <source src="${track.preview_url}" type="audio/mpeg">
-                    </audio>
+                    
                 `);
+                if (track.preview_url) {
+                    $('#resultado').append(`
+                        <audio controls>
+                            <source src="${track.preview_url}" type="audio/mpeg">
+                        </audio>
+                    `);
+                } else {
+                    $('#resultado').append('<p>Vista previa no disponible para esta canción.</p>');
+                }
+
             }
         });
     });

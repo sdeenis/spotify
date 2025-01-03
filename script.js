@@ -13,7 +13,7 @@
 $(document).ready(function () {
 
     const getUrlParameter = (sParam) => {
-        let sPageURL = window.location.search.substring(1),////substring will take everything after the https link and split the #/&
+        let sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL != undefined && sPageURL.length > 0 ? sPageURL.split('#') : [],
             sParameterName,
             i;
@@ -27,13 +27,10 @@ $(document).ready(function () {
         }
     };
 
-
     const accessToken = getUrlParameter('access_token');
 
     let client_id = "affbae1e92c946faa5859434a9805712";
-
     let redirect_uri = encodeURIComponent("https://sdeenis.github.io/spotify/");
-
     const redirect = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&redirect_uri=${redirect_uri}`;
 
     if (accessToken == null || accessToken == "" || accessToken == undefined) {
@@ -54,13 +51,25 @@ $(document).ready(function () {
                 console.log(response);
                 let track = response.tracks.items[0];
                 console.log(track);
+
+                // Convertir duración de milisegundos a formato "min:seg"
+                let duration_ms = track.duration_ms;
+                let minutes = Math.floor(duration_ms / 60000);
+                let seconds = Math.floor((duration_ms % 60000) / 1000).toString().padStart(2, '0');
+                let duration = `${minutes}:${seconds}`;
+
                 $('#resultado').html(`
-                    <h1>Cancion: ${track.name}</h2>
+                    <h1>Canción: ${track.name}</h1>
                     <img src="${track.album.images[0].url}" alt="${track.name}">
                     <p><b>Artista:</b> ${track.artists[0].name}</p>
                     <p><b>Álbum:</b> ${track.album.name}</p>
-                    
+                    <p><b>Duración:</b> ${duration}</p>
+                    <p><b>Popularidad:</b> ${track.popularity}/100</p>
+                    <a href="${track.external_urls.spotify}" target="_blank">
+                        Escuchar en Spotify
+                    </a>
                 `);
+
                 if (track.preview_url) {
                     $('#resultado').append(`
                         <audio controls>
@@ -70,8 +79,8 @@ $(document).ready(function () {
                 } else {
                     $('#resultado').append('<p><i>Vista previa no disponible para esta canción.</i></p>');
                 }
-
             }
         });
     });
 });
+

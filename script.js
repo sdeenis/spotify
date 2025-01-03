@@ -70,15 +70,7 @@ $(document).ready(function () {
                     </a>
                 `);
 
-                if (track.preview_url) {
-                    $('#resultado').append(`
-                        <audio controls>
-                            <source src="${track.preview_url}" type="audio/mpeg">
-                        </audio>
-                    `);
-                } else {
-                    $('#resultado').append('<p><i>Vista previa no disponible para esta canción.</i></p>');
-                }
+               
             }
         });
     });

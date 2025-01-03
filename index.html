@@ -6,9 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>API Spotify</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body, form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body {
+      margin-top: 20px;
+    }
+    form {
+      flex-direction: column;
+    }
+    form input {
+      padding: 10px;
+      margin-bottom: 10px;
+      width: 300px;
+    }
+    form button {
+      padding: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
+  
 
   <form id="form">
     <input id="campo" type="text" placeholder="Introduce el nombre de la canción...">
